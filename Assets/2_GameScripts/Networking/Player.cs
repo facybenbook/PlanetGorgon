@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
 
         if (PlayerID == Client.ID)
         {
-            if (Vector3.SqrMagnitude(transform.position - lastPosition) > 0.02f || Vector3.SqrMagnitude(transform.eulerAngles - lastRotation) > 3f)
+            if (Vector3.SqrMagnitude(transform.position - lastPosition) > 0.05f || Vector3.SqrMagnitude(transform.eulerAngles - lastRotation) > 3f)
                 SendTransform();
         }
     }
