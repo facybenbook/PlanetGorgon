@@ -52,4 +52,18 @@ internal class NetworkPlayerManager : MonoBehaviour
     {
         networkPlayers.Add(id, player);
     }
+
+    public void RemoveCharacter(ushort id)
+    {
+        Destroy(networkPlayers[id].gameObject);
+        networkPlayers.Remove(id);
+    }
+
+    internal void RemoveAllCharacters()
+    {
+        foreach (PlayerNetwork player in networkPlayers.Values)
+            Destroy(player.gameObject);
+
+        networkPlayers.Clear();
+    }
 }

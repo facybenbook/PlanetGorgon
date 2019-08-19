@@ -10,14 +10,14 @@ internal class PlayerNetwork : MonoBehaviour
     /// </summary>
     [SerializeField]
     [Tooltip("The speed to lerp the player's position")]
-    public float moveLerpSpeed = 10f;
+    public float moveLerpSpeed;
 
     /// <summary>
     ///     The speed to lerp the player's rotation.
     /// </summary>
     [SerializeField]
     [Tooltip("The speed to lerp the player's rotation")]
-    public float rotateLerpSpeed = 50f;
+    public float rotateLerpSpeed;
 
     /// <summary>
     ///     The position to lerp to.

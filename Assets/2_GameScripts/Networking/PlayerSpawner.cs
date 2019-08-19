@@ -44,6 +44,8 @@ public class PlayerSpawner : MonoBehaviour
         }
 
         client.MessageReceived += SpawnPlayer;
+        client.MessageReceived += DespawnPlayer;
+        client.Disconnected += DisconnectPlayer;
     }
 
     void SpawnPlayer(object sender, MessageReceivedEventArgs e)
@@ -67,7 +69,7 @@ public class PlayerSpawner : MonoBehaviour
                         controllablePrefab,
                         position,
                         Quaternion.Euler(rotation)
-                    ) as GameObject;                    
+                    ) as GameObject;
 
                     Player player = o.GetComponent<Player>();
                     player.PlayerID = id;
@@ -88,5 +90,27 @@ public class PlayerSpawner : MonoBehaviour
                 }
             }
         }
+    }
+
+    void DespawnPlayer(object sender, MessageReceivedEventArgs e)
+    {
+        using (Message message = e.GetMessage())
+        if (message.Tag == Tags.DespawnSplayer)
+        {
+            using (DarkRiftReader reader = message.GetReader())
+            {
+                DespawnPlayer(reader);
+            }
+        }
+    }
+
+    void DespawnPlayer(DarkRiftReader reader)
+    {
+        networkPlayerManager.RemoveCharacter(reader.ReadUInt16());
+    }
+
+    void DisconnectPlayer(object sender, DisconnectedEventArgs e)
+    {
+        networkPlayerManager.RemoveAllCharacters();
     }
 }

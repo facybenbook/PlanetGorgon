@@ -16,15 +16,13 @@ public class barb_animation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            m_Animator.Play("Run");
-            m_Animator.Play("Mean");
-        }
-        else
-        {
-            m_Animator.Play("Better_Idle");
-        }
+        //if (Input.GetKey(KeyCode.W))
+        //{
+        //}
+        //else
+        //{
+        //    m_Animator.Play("Better_Idle");
+        //}
 
     }
 }
