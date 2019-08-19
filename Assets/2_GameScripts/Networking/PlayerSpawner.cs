@@ -67,10 +67,11 @@ public class PlayerSpawner : MonoBehaviour
                         controllablePrefab,
                         position,
                         Quaternion.Euler(rotation)
-                    ) as GameObject;
+                    ) as GameObject;                    
 
                     Player player = o.GetComponent<Player>();
                     player.PlayerID = id;
+                    player.Client = client;
                 }
 
                 //If it's for another player then spawn a network player and to the manager. 

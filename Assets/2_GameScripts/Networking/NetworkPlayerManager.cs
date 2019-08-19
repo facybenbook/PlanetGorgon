@@ -25,31 +25,31 @@ internal class NetworkPlayerManager : MonoBehaviour
 
     void MessageReceived(object sender, MessageReceivedEventArgs e)
     {
-        //using (Message message = e.GetMessage() as Message)
-        //{
-        //    if (message.Tag == Tags.MovePlayerTag)
-        //    {
-        //        using (DarkRiftReader reader = message.GetReader())
-        //        {
-        //            // Wrap In While so we dont go outsite the bounts of the message
-        //            while (reader.Position < reader.Length)
-        //            {
-        //                //Read message
-        //                Vector3 newPosition = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
-        //                Vector3 newRotation = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
-        //                ushort id = reader.ReadUInt16();
+        using (Message message = e.GetMessage() as Message)
+        {
+            if (message.Tag == Tags.MovePlayerTag)
+            {
+                using (DarkRiftReader reader = message.GetReader())
+                {
+                    // Wrap In While so we dont go outsite the bounts of the message
+                    while (reader.Position < reader.Length)
+                    {
+                        //Read message
+                        Vector3 newPosition = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
+                        Vector3 newRotation = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
+                        ushort id = reader.ReadUInt16();
 
-        //                //Update characters to move to new positions
-        //                networkPlayers[id].NewPosition = newPosition;
-        //                networkPlayers[id].NewRotation = newRotation;
-        //            }
-        //        }
-        //    }
-        //}
-       
+                        //Update characters to move to new positions
+                        networkPlayers[id].NewPosition = newPosition;
+                        networkPlayers[id].NewRotation = newRotation;
+                    }
+                }
+            }
+        }
+
     }
     public void Add(ushort id, PlayerNetwork player)
     {
-        //networkPlayers.Add(id, player);
+        networkPlayers.Add(id, player);
     }
 }
