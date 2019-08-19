@@ -3,42 +3,25 @@ using DarkRift.Client;
 using DarkRift.Client.Unity;
 using UnityEngine;
 
-/// <summary>
-///     Spawns players in the game.
-/// </summary>
 internal class BlockPlayerSpawner : MonoBehaviour
 {
-    /// <summary>
-    ///     The client to communicate with the server via.
-    /// </summary>
+
     [SerializeField]
     [Tooltip("The client to communicate with the server via.")]
     UnityClient client;
 
-    /// <summary>
-    ///     The block world in the scene.
-    /// </summary>
     [SerializeField]
     [Tooltip("The block world in the scene.")]
     BlockWorld blockWorld;
 
-    /// <summary>
-    ///     The player object to spawn for our player.
-    /// </summary>
     [SerializeField]
     [Tooltip("The player object to spawn.")]
     GameObject playerPrefab;
 
-    /// <summary>
-    ///     The player object to spawn for others' players.
-    /// </summary>
     [SerializeField]
     [Tooltip("The network player object to spawn.")]
     GameObject networkPlayerPrefab;
 
-    /// <summary>
-    ///     The character manager for network players.
-    /// </summary>
     [SerializeField]
     [Tooltip("The network player manager.")]
     BlockCharacterManager characterManager;

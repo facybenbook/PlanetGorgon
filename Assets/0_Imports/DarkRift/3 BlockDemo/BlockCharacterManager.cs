@@ -5,21 +5,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-/// <summary>
-///     Handles the synchronization of other player's characters.
-/// </summary>
 internal class BlockCharacterManager : MonoBehaviour
 {
-    /// <summary>
-    ///     The unit client we communicate via.
-    /// </summary>
     [SerializeField]
     [Tooltip("The client to communicate with the server via.")]
     UnityClient client;
 
-    /// <summary>
-    ///     The characters we are managing.
-    /// </summary>
     Dictionary<ushort, BlockNetworkCharacter> characters = new Dictionary<ushort, BlockNetworkCharacter>();
 
     void Awake()
