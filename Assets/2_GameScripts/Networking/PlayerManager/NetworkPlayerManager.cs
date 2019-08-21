@@ -66,10 +66,15 @@ internal class NetworkPlayerManager : MonoBehaviour
                         {
                             //Read message
                             int speed = reader.ReadInt32();
+                            byte jump = reader.ReadByte();
+                            byte grounded = reader.ReadByte();
+                            Debug.LogWarning("this is a test: " + grounded);
                             ushort id = reader.ReadUInt16();
 
                             //Update characters to move to new positions                            
                             networkPlayers[id].speed = speed;
+                            networkPlayers[id].jump = jump;
+                            networkPlayers[id].grounded = grounded;
                         }
                     }
                 }

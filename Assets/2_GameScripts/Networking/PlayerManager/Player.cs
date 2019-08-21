@@ -13,12 +13,18 @@ public class Player : MonoBehaviour
 
     Animator animator;
     int speedhash;
-    float speed;
+    int jumphash;
+    int groundedhash;
+    int speed;
+    byte jump;
+    byte grounded;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         speedhash = Animator.StringToHash("Speed");
+        jumphash = Animator.StringToHash("Jump");
+        groundedhash = Animator.StringToHash("Grounded");
     }
 
     void FixedUpdate()
@@ -64,12 +70,16 @@ public class Player : MonoBehaviour
     void SendAnimationState()
     {
         //Get Animator Condition Values
-        speed = ((int)Math.Round(animator.GetFloat(speedhash)));
+        speed = (int)Math.Round(animator.GetFloat(speedhash));
+        jump = Convert.ToByte(animator.GetBool(jumphash));
+        grounded = Convert.ToByte(animator.GetBool(groundedhash));
 
         //Serialize
         using (DarkRiftWriter writer = DarkRiftWriter.Create())
         {
             writer.Write(speed);
+            writer.Write(jump);
+            writer.Write(grounded);
 
             //Send
             using (Message message = Message.Create(Tags.AnimationPlayerTag, writer))
