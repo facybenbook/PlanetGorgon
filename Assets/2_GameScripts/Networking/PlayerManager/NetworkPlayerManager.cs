@@ -68,7 +68,6 @@ internal class NetworkPlayerManager : MonoBehaviour
                             int speed = reader.ReadInt32();
                             byte jump = reader.ReadByte();
                             byte grounded = reader.ReadByte();
-                            Debug.LogWarning("this is a test: " + grounded);
                             ushort id = reader.ReadUInt16();
 
                             //Update characters to move to new positions                            
