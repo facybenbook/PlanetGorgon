@@ -65,14 +65,11 @@ internal class NetworkPlayerManager : MonoBehaviour
                         while (reader.Position < reader.Length)
                         {
                             //Read message
-                            float speed = reader.ReadUInt16();
-                            Debug.Log("Checkpoint Alpher " + speed);
+                            int speed = reader.ReadInt32();
                             ushort id = reader.ReadUInt16();
-                            Debug.Log("Checkpoint Brava " + id);
 
-                            //Update characters to move to new positions
-                            //networkPlayers[id].speed = speed;
-                            //Debug.Log("Checkpoint Cherler");
+                            //Update characters to move to new positions                            
+                            networkPlayers[id].speed = speed;
                         }
                     }
                 }

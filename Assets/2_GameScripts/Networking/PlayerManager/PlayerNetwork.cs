@@ -17,7 +17,7 @@ internal class PlayerNetwork : MonoBehaviour
     public float rotateLerpSpeed;
     public Vector3 NewPosition { get; set; }
     public Vector3 NewRotation { get; set; }
-    public float speed { get; set; }
+    public int speed { get; set; }
     int anim_speedhash = Animator.StringToHash("Speed");
 
     void Awake()

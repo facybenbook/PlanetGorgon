@@ -1,5 +1,6 @@
 ﻿using DarkRift;
 using DarkRift.Client.Unity;
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -20,22 +21,6 @@ public class Player : MonoBehaviour
         speedhash = Animator.StringToHash("Speed");
     }
 
-    void Update()
-    {
-        if (Client == null)
-        {
-            Debug.LogError("No client assigned to player component!");
-            return;
-        }
-
-        if (PlayerID == Client.ID)
-        {
-            // Send Vector Data If Player Moved
-            if (Vector3.SqrMagnitude(transform.position - lastPosition) > 0.05f || Vector3.SqrMagnitude(transform.eulerAngles - lastRotation) > 3f)
-                SendTransform();
-        }
-    }
-
     void FixedUpdate()
     {
         if (Client == null)
@@ -43,9 +28,12 @@ public class Player : MonoBehaviour
             Debug.LogError("No client assigned to player component!");
             return;
         }
-
         if (PlayerID == Client.ID)
         {
+            // Send Vector Data If Player Moved
+            if (Vector3.SqrMagnitude(transform.position - lastPosition) > 0.05f || Vector3.SqrMagnitude(transform.eulerAngles - lastRotation) > 3f)
+                SendTransform();
+
             // Send Animation State Data
             SendAnimationState();
         }
@@ -76,7 +64,7 @@ public class Player : MonoBehaviour
     void SendAnimationState()
     {
         //Get Animator Condition Values
-        speed = animator.GetFloat(speedhash);
+        speed = ((int)Math.Round(animator.GetFloat(speedhash)));
 
         //Serialize
         using (DarkRiftWriter writer = DarkRiftWriter.Create())
