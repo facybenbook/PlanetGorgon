@@ -8,13 +8,17 @@ public class attack : MonoBehaviour
 
   void Start()
   {
-      anim = gameObject.GetComponent<Animator>();
+        anim = gameObject.GetComponent<Animator>();
   }
   void Update()
   {
-      if (Input.GetMouseButtonDown(0))
-      {
-          anim.SetTrigger("standing_melee_attack_downward");
-      }
+    if (Input.GetMouseButtonDown(0))
+    {
+        anim.SetTrigger("standing_melee_attack_downward");
+    }
   }
+  void LateUpdate()
+    {
+
+    }
 }
